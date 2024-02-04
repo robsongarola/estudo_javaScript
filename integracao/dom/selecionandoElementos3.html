@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Selecionar Elementos #03</title>
+    <link rel="stylesheet" href="css/estilo.css">
+    <style>
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        form input,
+        form select,
+        form button {
+            margin: 10px;
+            font-size: 1.6em;
+        }
+    </style>
+</head>
+
+<body class="conteudo exercicio">
+    <h1>Formulário</h1>
+    <form name="pesquisa" action="http://www.google.com.br/search">
+        <input type="text" name="q" placeholder="Digite o termo...">
+        <select name="hl">
+            <option value="pt-br">Português (Brasil)</option>
+            <option value="en-us">Inglês (Americano)</option>
+        </select>
+        <button>Pesquisar</button>
+    </form>
+    <script>
+       // SELECIONANDO ELEMENTOS EM UM FORMULÁRIO (IMPORTANTE OS ELEMENTOS PESQUISADOS POSSUAM O ATRIBUTO NAME)
+
+       console.log(document.forms) // RETORNA UM HTML-COLLECTION
+       console.log(document.forms[0])
+       console.log(document.getElementsByName('pesquisa')) // RETORNA UMA NODE-LIST SELECIONANDO O FORMULARIO QUE TEM O NAME='PESQUISA'
+       console.log(document.getElementsByTagName('form'))  // RETORNA UM HTML-COLLETION QUE POSSUI A TAG FORM
+       console.log(document.pesquisa) // FOI SELECIONANDO O ELEMENTO QUE POSSUI O NAME='pesquisa'
+       console.log(document.pesquisa.q) // FOI SELECIONANDO DENTRO DO FORMULÁRIO COM NAME='PESQUISA', UM INPUT QUE TEM UM NAME='Q' (SELECIONANDO
+       // DESSA FORMA PODEMOS ALTERAR O VALOR DO INPUT)
+        document.pesquisa.q.value='LINUX' // O CAMPO DO FORMULARIO SELECIONADO FOI MODIFICADO
+        document.pesquisa.hl.value='en-us' // FOI MODIFICADO TAMBÉM A ENTRADO DO SELECT
+        console.log(document.pesquisa.hl.selectedIndex)  // RETORNA O INDEX O SELECT SELECIONADO 1
+    </script>
+</body>
+
+</html>

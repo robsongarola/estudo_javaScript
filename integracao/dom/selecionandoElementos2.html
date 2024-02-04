@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Selecionar Elementos #02</title>
+    <link rel="stylesheet" href="css/estilo.css">
+</head>
+<body class="conteudo exercicio">
+    <div id="primeiro">#primeiro</div>
+    <div>Segundo</div>
+    <div class="terceiro ultimo"><span wb-attrib>.terceiro .ultimo</span></div>
+    <script>              
+     // VAMOS USAR PARA SELECIONAR OS ELEMENTOS PELOS SELETORES CSS
+     // DOCUMENT.QUERYSELECTOR('SELETOR')
+     // DOCUMENT.QUERYSELECTORALL('SELETOR')
+
+     document.querySelector('#primeiro').classList.add('destaque')
+
+     // VAMOS CRIAR DUAS FUNCÕES PARA SELECIONAR E RETIRAR A SELEÇÃO DOS ELEMENTOS
+
+     const selecionar= seletor => {
+
+        document.querySelectorAll(seletor).forEach( e => e.classList.add('destaque'))
+     }
+     // O QUERYSELECTOR POSSUI O FOREACH()
+
+     const removeSeleção = seletor =>{
+
+        document.querySelectorAll(seletor).forEach( e => e.classList.remove('destaque'))
+     }
+
+
+     removeSeleção('div')
+     selecionar('.terceiro.ultimo')
+     removeSeleção('*')
+     selecionar(':not(#primeiro)') // :not é uma pseudo-classe de negacao. Negando o elemento com id primeiro
+     removeSeleção('*')
+     selecionar(':nth-child(1)') // ESSE SELETOR , SELECIONAR O PRIMEIRO ELEMENTO FILHO DE UM ELEMENTO
+     removeSeleção('*')
+     selecionar('div:nth-of-type(1)')  // SELECIONANDO O PRIMEIRO TIPO , NO CASO DIV
+     removeSeleção('*');
+     selecionar('[wb-attrib]') // SELECIONANDO O ELEMENTO QUE POSSUI UM ATRIBUTO PERSONALIZADO
+ 
+    </script>
+</body>
+</html>

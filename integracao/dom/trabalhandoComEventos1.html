@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='UTF-8'>
+    <title>Trabalhando com Eventos #01</title>
+    <link rel='stylesheet' href='css/estilo.css'>
+</head>
+
+<body class="conteudo exercicio">
+    <div>
+        <!-- <a onclick="nanegar5s(event)" href="https://google.com.br">Google</a> -->
+        <a rg-espera5s href="https://google.com.br">Google</a>
+    </div>
+    <script>
+        /*VAMOS ESPLORAR O DISPARAR O EVENTO MAIS CLASSICO DO JS (CLICAR DO MOUSE)*/
+        /*PRIMEIRO VAMOS CLICAR UMA FUNÇÃO QUE SERÁ EXECUTADA AO CLICAR DO MOUSE*/
+        function navegar5s(e){ // 'e' é o evento recibido do elemento clicado '<a>'
+            e.preventDefault() // PARA PARAR A EXECUÇÃO DEFAULT
+            const link= e.target /*O EVENTO POSSUI UMA SERIE DE PROPRIEDADES ENTRE ELAS O TARGET (O ELEMNTO QUE DISPAROU O EVENTO, NO CASO <A>)
+                */  
+               console.log('NAVEGANDO EM 5 SEG...')
+               setTimeout(()=>{
+            window.location.href=link.href
+         },5000)
+        }
+        // const a= document.querySelector('a');
+        // a.onclick=navegar5s (ESSA ABORTAGEM NÃO PERIMITE VER DENTRO DO ELEMENTO O QUÊ ESTÁ OCORRENDO)
+        const a = document.querySelector('[rg-espera5s]')
+        a.onclick=navegar5s // ESSA ABORTAGEM COM PROPRIEDADE PERSONALIZADA É MELHOR
+    </script>
+</body>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='UTF-8'>
+    <title>Acessando Classes</title>
+    <link rel='stylesheet' href='css/estilo.css'>
+</head>
+
+<body class='conteudo exercicio'>
+    <div>
+        Classes
+    </div>
+    <script>
+      // REVISANDO CLSSLIST
+
+      const classes=document.querySelector('div').classList // EDICIONEI EM UMA CONSTANTE O ELEMENTO JUNTAMENTE
+      //COM A PROPRIEDADE CLASSLIST
+
+      classes.add('destaque');
+      classes.remove('destaque');
+      classes.toggle('destaque') // MÉTODO FICA ALTERNANDO (SE POSSUI RETIRA . SE NÃO POSSUI COLOCA)
+      console.log(classes.contains('destaque')) // COMO ALTERNEI PARA TER RETORNA TRUE
+      console.log(classes.length) // COMO FOI COLOCADA A CLASSE NO TOOGLE RETORNA 1
+      console.log(classes.toggle('destaque'))
+      console.log(classes.length) // RETORNA 0 , POIS RETIRAMOS A CLASSES COM O TOGGLE
+
+      classes.add('destaque1')
+      classes.add('destaque2')
+
+      // PODEMOS FAZER UM FOR/IN (POIS POSSUI UM INTERECTOR) E FOREACH(), POIS ESTÃO AMBOS DISPONIVEIS
+
+      for(c of classes){
+
+        console.log(c)
+      } // SERÁ RETORNADO 2 ELEMENTOS DO ARRAY DESTAQUE
+
+      classes.forEach( c=> console.log(c)) // MESMO RESULTADO
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='UTF-8'>
+    <title>Axios #02</title>
+    <link rel='stylesheet' href='css/estilo.css'>
+    <script src="js/axios.js"></script>
+</head>
+
+<body class="conteudo exercicio">
+    <h1>Axios Get/Post</h1>
+    <div id="get"></div>
+    <div id="post"></div>
+
+    <script>
+        // VAMOS CRIAR UMA FUNÇÃO PARA EXIBIR O RESULTADO DEPENDENDO DA RESPOSTA DO SERVIDOR
+        function exibirResultado(id,dados){
+
+            const texto= JSON.stringify(dados)
+          document.getElementById(id).innerHTML=texto  
+        }
+      // FAZENDO A REQUISIÇÃO COM MÉTODO AJAX COM A API AXIOS ATRAVÉS DE UM MÉTODO GET
+
+      axios.get('/parouimpar',{
+        params:{
+            numero:10
+        }
+        }).then( resp => exibirResultado('get',resp.data))
+
+        /*USANDO A MESMA URL(SERVICO CRIADO NO SERVIDOR COM O AXIOS) */
+
+     axios.post('formulario',{
+        nome:'joao',
+        sobrenome:"silva",
+        
+     }).then( resp => exibirResultado('post',resp.data))   
+
+    </script>
+</body>

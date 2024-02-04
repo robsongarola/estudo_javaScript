@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='UTF-8'>
+    <title>Modificando HTML #01</title>
+    <link rel='stylesheet' href='css/estilo.css'>
+</head>
+
+<body class='conteudo exercicio'>
+    <script>
+       // INICIALMENTE VAMOS CRIAR OS ELEMENTOS DE NOSSA PÁGINA
+        const body=document.querySelector('body') // o ELEMENTO BODY ONDE SERÁ INSERIDO OS ELEMENTOS.(SELECIONAR)
+        const div1=document.createElement('div') // CREI UM SEGUNDO ELEMENTO
+        div1.classList.add('destaque');
+        div1.innerHTML="primeiro";
+        const div2=document.createElement('div');
+        div2.setAttribute('wm-atributo','valor');
+        div2.innerHTML="segundo";
+        const p=document.createElement('p');
+        p.innerHTML="Terceiro"
+        const div3= document.createElement('div');
+        div3.appendChild(p) // INSERI O PARAGRAFO NA DIV3
+        // AGORA VAMOS INSERIR OS ELEMENTOS NO BODY
+        body.appendChild(div1)
+        body.appendChild(div2)
+        body.appendChild(div3)
+        // VAMOS CRIAR UM NÓ DE TEXTO É APÓS INSERIR NA PRIMEIRA POSIÇÃO (POSIÇÃO[0]) DOS FILHOS
+        const texto= document.createTextNode('Antes...') 
+        div3.insertBefore(texto,div3.childNodes[0])
+        // CRIANDO UM CLONE DO ELEMENTO
+        const div4= div3.cloneNode(true) // A ARGUMENTO TRUE É INFORMANDO QUE A CRONAGEM É PROFUNDA(TODOS FILHOS)
+        body.appendChild(div4)
+        //TAMBÉM PODEMOS EXCLUIR UM ELEMENTO
+        body.removeChild(div3)
+
+
+
+    </script>
+</body>
+
+</html>

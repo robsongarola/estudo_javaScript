@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='UTF-8'>
+    <title>Trabalhando com Eventos #02</title>
+    <link rel='stylesheet' href='css/estilo.css'>
+</head>
+
+<body class="conteudo exercicio">
+    <div>Elemento</div>
+    <script>
+       // UM OUTRO EVENTO QUE PODE OCORRER É O CLICAR DO MOUSE E ARRASTAR O ELEMENTO
+       const item=document.querySelector('div')
+       item.style.position='absolute' // TORNANDO O ELEMENTO COM POSIÇÃO ABSOLUTA DENTRO DA PÁGINA
+       item.onmousemove= e =>{
+        const item = e.target;
+        item.style.cursor='move' // MUDANDO O FORMATO DO CURSOR QUANDO ESTIVER DENTRO DO ELEMENTO
+        if(e.buttons){ /* ENTRE OS AS PROPRIEDADES RECEBIDA DO EVENTO (CURSOR MOVENDO SOBRE O ELEMENTO)
+            TEMOS A MUDANÇA DO VALOR PROPRIEDADE BUTTONS, QUE INICIALMENTE É ZERO, E QUANDO O CURSOR
+        FICA SOBRE O ELEMENTO ELA FICA != ZERO (TRUE)*/
+        item.style.top = `${e.clientY - (item.clientHeight / 2)}px`/*O STYLE DO ELEMENTO EM RELAÇÃO AO TOPO EM RELAÇÃO AO TOPO */
+        item.style.left= `${e.clientX - (item.clientWidth / 2)}px`
+        }
+       }
+    </script>
+</body>

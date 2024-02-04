@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='UTF-8'>
+    <title>Mini SPA</title>
+    <link rel='stylesheet' href='../css/estilo.css'>
+    <style>
+        nav {
+            font-size: 2em;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #FFF;
+            padding: 0 10px;
+        }
+    </style>
+</head>
+
+<body class="conteudo">
+    <nav>
+        <a href wm-link="series.html" wm-destino=".pagina">Séries</a> |
+        <a href wm-link="linguagens.html" wm-destino=".pagina">Linguagens</a>
+    </nav>
+    <div class="pagina"></div>
+    <script>
+        // CRIANDO A FUNÇÃO QUE QUE RECEBERA O COTEÚDO DA URL E COLOCARA NO SELETOR('.PAGINA')
+
+        function navegarViaAjax(url,seletor, push=true){ /*esse terceiro parametro vamos usar para controlar
+            o Historico (em uma SPA não aparece o historico, onde vamos fazer aparecer)*/
+            if( !url && !seletor) return
+            const elemento = document.querySelector(seletor)
+
+            fetch(url)
+            .then( res => res.text()) // a resposta vem como texto (o arquivo está em HTML, queremos só o texto)
+            .then( html =>{
+                elemento.innerHTML=html
+                // ESSA PARTE TEM RELAÇÃO COM A INCLUSÃO DO HISTORICO NO NAVEGADOR
+                if(push){ 
+                    
+                    history.pushState({seletor},null,url)
+            }
+            })
+        }
+
+        document.querySelectorAll('[wm-link]').forEach( link =>{
+            
+            const url = link.attributes['wm-link'].value
+            const seletorDestino = link.attributes['wm-destino'].value
+
+            // PEGUEI OS DOS LINKS = A URL (ORIGEM) E DESTINO (A DIV ONDE COLOCAREI O CONTEÚDO)
+
+            // VAMOS INTERSSEPTAR O EVENTO DO CLICK
+
+            link.onclick = e =>{
+
+                e.preventDefault();
+                navegarViaAjax(url,seletorDestino)
+            }
+
+        })
+        // ESSA PARTE TEM HAVER COM O HISTORICO DE NAVEGAÇÃO
+
+        window.onpopstate = e =>{
+
+            if(e.state){
+
+                navegarViaAjax(window.location.href, e.state.seletor,false)
+            }
+        }
+    </script>
+</body>

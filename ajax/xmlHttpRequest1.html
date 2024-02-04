@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='UTF-8'>
+    <title>XMLHttpRequest #01</title>
+    <link rel='stylesheet' href='css/estilo.css'>
+</head>
+
+<body class="conteudo exercicio">
+    <h1>Estados</h1>
+
+    <script>
+       function ajax(config){ // ESTAMOS CRIANDO ESSA FUNÇÃO , QUE PODEMOS ATÉ REUSAR EM OUTROS PROCESSOS
+                              //O PARAMETRO CONFIG SERÁ UM OBJETO QUE CONTERÁ TODOS OS AS PROPRIEDADES E
+                              // MÉTODOS QUE USAREMOS PARA FAZER A REQUISIÇÃO AO SERVIDOR
+       const xhr = new XMLHttpRequest() ; // É O OBJETO QUE CONTERÁ TODOS OS TADOS QUE IRAO TRANSITAR
+       xhr.open(config.metodo,config.url,true); // abrindo uma requisição (passando o tipo (get ou post),a url e true (assincrona))
+       // VAMOS TRATAR UM EVENTO QUE OCORRE AO CARREGAR A PÁGINA
+       xhr.onload = e => {  // SE CARREGAR , GEROU O EVENTO
+         if(xhr.status === 200){
+
+            config.sucesso(xhr.response) // sucesso será uma função que será executada caso a resposta tenha ocorrido ok
+         }else if (xhr.status >= 400){
+            config.erro({ // CRIAREMOS O FUNÇÃO ERRO
+                codigo : xhr.status,
+                texto : xhr.statusText
+            })
+         }
+       }                         
+        xhr.send(); // TRADUÇÃO DE SEND E ENVIAR
+        
+       }
+       //VAMOS CHAMAR A FUNÇÃO PASSANDO OS DADOS DO PARAMETRO(QUE É O OBJETO)
+       ajax({
+        url:"dados/estados.json", // O LOCAL ONDE SERÁ LOCALIZADO O ARQUIVO QUE QUEREMOS COMO RESPOSTA
+        metodo:"get",
+        sucesso(resposta){
+
+            const estados = JSON.parse(resposta) // A RESPOSTA CONSTARÁ OS DADOS SOLICITADOS
+
+            const linhas = estados.map( estado => {
+
+                const tdId = document.createElement('td');
+                tdId.innerHTML = estado.id;
+                const tdNome= document.createElement('td');
+                tdNome.innerHTML= estado.nome
+                const tdSigla = document.createElement('td');
+                tdSigla.innerHTML = estado.sigla;
+
+                const tr = document.createElement('tr')
+
+                tr.appendChild(tdId)
+                tr.appendChild(tdNome)
+                tr.appendChild(tdSigla)
+
+                return tr
+            })
+
+            const tabela=document.createElement('table')
+            linhas.forEach( linha => tabela.appendChild(linha))
+            document.body.appendChild(tabela)
+        },
+        erro(e){
+            const msg = document.createTextNode(`Código : ${e.codigo} ${e.texto}`)
+
+            document.body.appendChild(msg)
+        }
+       })
+       
+    </script>
+</body>

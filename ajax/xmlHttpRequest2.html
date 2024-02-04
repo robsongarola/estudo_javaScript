@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='UTF-8'>
+    <title>XMLHttpRequest #02</title>
+    <link rel='stylesheet' href='css/estilo.css'>
+    <style>
+        input[type=file] {
+            display: flex;
+            margin: 10px;
+            padding: 40px;
+            font-size: 40px;
+            background: crimson;
+            border-radius: 20px;
+        }
+    </style>
+</head>
+
+<body class="conteudo exercicio">
+    <input type="file" name="arquivo" />
+    <div class="progresso"></div>
+
+    <script>
+           // CRIANDO A FUNÇÃO AJAX
+      function ajaxUpload(config){
+        const xhr = new XMLHttpRequest()
+
+        if(xhr.upload){ // se propriedade estiver presente no obj
+            xhr.upload.onprogress = e =>{ // HAVENDO A PROPRIEDADE UPLOAD (O EVENTO ONPROGRESS ACOMPANHA O CARREGAR)
+
+                const atual = e.loaded;
+                const total = e.total;
+                const percentual = Math.floor(atual/total * 100)
+                config.progresso({atual, total, percentual }) // O método progresso vira no obj config
+            }
+        }
+        xhr.open(config.metodo,config.url,true)
+        xhr.send(config.formData) // enviar o arquivo formData que irei informar no obj de config
+      }      
+      // SELECIONANDO O ELEMENTO QUE IRA DISPARAR O EVENTO
+
+      document.querySelector('input[type=file]').onchange= e =>{ /*onchange === mudança de estado*/
+
+        const formData = new FormData() // objeto que contera os dados do formulário
+        const inputFile= e.target ; // elemento que disparou o evento
+        formData.append(inputFile.name, inputFile.files[0]) /* incluindo no objeto o campo que possui o name
+         e o arquivo na posição  [0]*/
+
+         ajaxUpload({
+            url:'upload',
+            formData:formData,
+            progresso(dados){
+                const progresso= document.querySelector('.progresso')
+                progresso.innerHTML= JSON.stringify(dados) // os dados serão transformado em string e colocados
+                 // na div
+            }
+         })
+      }
+    </script>
+</body>

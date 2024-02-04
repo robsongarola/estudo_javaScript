@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+  
+</head>
+<body>
+
+    <H3>Propriedades e Métodos String</H3>
+    <h4>.lenght</h4>
+    <p id="lenght">(Olá Mundo)<span id="tamanho"></span></p>
+
+    <br>
+    <br><br><br>
+    <h3>Há três métodos de extrairmos pedaçoes de strings (Cada qual com suas caracteristicas)</h3>
+    <h2>.slice(start,end)</h2>
+    <p id="textop1">Amontoado <span id="pedaco1"></span></p>
+
+    <span>----------------------------------------------------------------------</span>
+
+    <h2>.substring(arg1,arg2)</h2>
+    <h3>A diverença entre o método .slice() e que o .subestring() trata os seus arquimentos negativos com zero</h3>
+<span>----------------------------------------------------------------------------------</span>
+
+    <h2>Método substr(arg1,art2)</h2>
+    <h3>A diferenca dos outros métodos de filtragem, visto até agora, o segundo agumento será o tamanho da string (caso seja segativo o argumento começara a contar do final)</h3>
+
+    <p>A string é : Longividade que possui : <span id="substr"></span></p>
+
+    <span>------------------------------------------------------------------------------------------</span>
+
+    <h3>Método replace(arg1,arg2)</h3>
+    <h2>Método que, será substituido o primeiro argumento da string pelo segundo (é kaysensitive)</h2>
+    <h2>O método substitui a primeira ocorrência. Para substituir todas as ocorrênia e sejam maiúscula e minusculas usar expressoes regulares</h2>
+
+
+    <p id="primTexto"></p>
+    <p id="segTexto"></p>
+    <span>----------------------------------------------------------------------------------</span>
+
+    <h2>Temos os métodos .toUpperCase() e .toLowerCase()</h2>
+    <h3>.toUpperCase() --transforma o texto todo para maiúsculo e .toLowerCase() - transforma o texto todo para minúscylo</h3>
+
+    <p>texto minúsculo para maiúsculo : <span id="maius"></span></p>
+    <p>texto maiúsculo para minúsculo : <span id="minus"></span></p>
+
+    <span>----------------------------------------------------------------------</span>
+
+    <h2>Método .split('separador')</h2>
+
+    <p>teste<span id="separacao"></span></p>
+
+
+
+     <script>
+        let tamanho="Olá mundo";
+        let ped1='Amontoado';
+        let subStr="Longividade";
+        let texreplac="O carro parece não obeter a velocida.Mas o carro sim";
+        let minus="texto minúsculo para maiúsculo";
+        let maius="texto maiúsculo para minusculo";
+        let teste="A lua esta muito bonita"
+        document.getElementById('tamanho').innerHTML=` O meu tamanho é de : ${tamanho.length} strings`
+        document.getElementById('pedaco1').innerHTML=` Iremos retornar a posição 1 até 6 : ${ped1.slice(1,6)}`
+        document.getElementById('substr').innerHTML=` O médodo substr(arg1,arg2) retornara o começo da string e seu tamanho : ${subStr.substr(0,5)}`
+        document.getElementById('primTexto').innerHTML=texreplac
+        document.getElementById('segTexto').innerHTML=`Vamos substituir carro por trêm e vice-versa ${texreplac.replace(/carro/gi,'trem')}`
+        document.getElementById('maius').innerHTML=` ${minus.toLocaleUpperCase()}`
+        document.getElementById('minus').innerHTML=` ${minus.toLocaleUpperCase()} para ${maius.toLocaleLowerCase()} `
+        document.getElementById('separacao').innerHTML=` Teste será um array ${teste.split('')}`
+    </script>
+    
+</body>
+</html>

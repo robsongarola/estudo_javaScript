@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Selecionar Elementos #04</title>
+    <link rel="stylesheet" href="css/estilo.css">
+</head>
+
+<body class="conteudo exercicio">
+    <div>
+        <p>Início</p>
+    </div>
+    <div>
+        <ul>
+            <li>Pedro</li>
+            <li>Ana</li>
+            <li>Bia</li>
+        </ul>
+    </div>
+    <div>
+        <p>Fim</p>
+    </div>
+    <script>
+        // VAMOS CRIAR UMA FUNÇÃO PARA FACILITAR "CONSOLE.LOG()", I INTRODUZI-LA NO PROTOTYPE DOS ELEMETOS QUE SÃO RETORNADOS
+        function log(){
+
+            console.log(this)
+        }
+       // ELEMENTOS QUE SÃO RETORNADOS NA PESQUISA NA DOM
+
+       HTMLCollection.prototype.log=log;
+       HTMLElement.prototype.log=log;
+       NodeList.prototype.log=log;
+       Node.prototype.log=log;
+
+       const lista = document.querySelector('div ul') //SELECIONANDO UMA DIV QUE POSSUI UMA UL
+       lista.parentNode.log() // RETORNARA O PAI QUE É A DIV
+       lista.childNodes.log() // RETORNA OS FILHOS DA DIV/UL (SERAM RETORNADO 7 ELEMENTOS PORQUE HÁ OS NÓS TEXT)
+       // PEGANDO O PRIMEIRO ELEMENTO DA LISTA
+       const primeiro=lista.firstChild;
+       primeiro.log() // IRÁ RETORNAR O PRIMEIRO ELEMENTO DA LISTA : "TEXT"
+       primeiro.nextSibling.log() // SELECIONANDO O PRÓXIMO ELEMENTO, APÓS O PRIMEIRO "PRÓXIMO IRMÃO"
+      const ultimo = lista.lastChild // SELECIONANDO O ÚLTIMO ELEMENTO : "TEXT"
+      ultimo.log()  // RETORNA O ULTIMO ELEMENTO
+      ultimo.previousSibling.log() // RETORNA O ANTERIOR AO ÚLTIMO
+
+      // MÉTODO QUE SÓ VEM OS FILHOS SEM OS TEXT
+
+      lista.children.log() // RETORNA OS FILHOS DA LISTA LI'S
+      lista.firstElementChild.log() // RETORNA O PRIMEIRO ELEMENTO DA LISTA SEM OS TEXT QUE É O PRIM LI
+      lista.lastElementChild.log() // RETORNA O ÚLTIMO ELEMENTO DA LISTA, SEM O TEXT, O ÚLTIMO LI
+      lista.parentNode.previousElementSibling.log() // SELECIONA O ELEMENTO ANTERIOR A DIV/UL(QUE É O PAI), QUE
+      // SERÁ A DIV ANTERIOR
+      lista.parentNode.nextElementSibling.log()
+
+
+
+    </script>
+</body>
+
+</html>

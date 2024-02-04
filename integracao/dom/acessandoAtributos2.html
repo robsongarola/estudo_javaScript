@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='UTF-8'>
+    <title>Acessando Atributos #02</title>
+    <link rel='stylesheet' href='css/estilo.css'>
+</head>
+
+<body class='conteudo exercicio'>
+    <div>
+        <label for="compras">Compras</label>
+        <ul id="compras" destino='escritório' data-urgencia="5">
+            <li>Café</li>
+            <li>Água</li>
+            <li>Copo Descartável</li>
+        </ul>
+    </div>
+    <script>
+        //INICIALMENTE SELECIONANDO A DIV QUE POSSUI UMA UL COM UMA PROPRIEDADE ESPECIFICA
+        const lista= document.querySelector('div ul[destino="escritório"]')
+        console.log('elemento "ul" -------------------------------------------------------')
+        console.log('childNodes', lista.childNodes) // COMO VIMOS RETORNA 7 NÓS : TEXT,LI,TEXT.LI,TEXT,LI,TEXT
+        console.log('destino',lista.destino) // SE FOSSE LISTA.ID (OK) , NO ENTANTO , LISTA.DESTINO -> UNDEFINED (ATRIBUTOS PERSONALIZADOS NÃO FUNCIONA)
+        console.log('destino',lista.getAttribute('destino')) // PARA ATRIBUTOS PERSONALIZADOS GETATTRIBUTE
+        console.log('hasAttribute',lista.hasAttribute('destino')) //=> true
+        console.log('setAttribute',lista.setAttribute('destino','empresa')) // O SETATTRIBUTE MODIFICA O VALOR DE UM ATRIBUTO EXISTENTE
+        console.log('setAttribute',lista.setAttribute('status','aberto'))// ALÉM DE ALTERAR O VALOR DE UM ATRIBUTO ESSE MÉTODO ADICIONA ATRIBUTO
+        console.log('removeAttribute',lista.removeAttribute('destino')) // REMOVE ATRIBUTOS
+        // NA ESPECIFICAÇÃO DO JS OS ATRIBUTOS PERSONALIZADOS COMEÇAO COM DATA- (É CRIADO UMA OBJ COM ESSES ATRIBUTOS (DATASET))
+
+        console.log(lista.dataset) // RETORNA OS ATRIBUTOS PERSONALIZADOS COM DATA-
+        lista.dataset.urgencia // RETORNA O VALOR DO ATRIBUTO
+        lista.dataset.urgencia='4' // TAMBÉM ALTERA O VALOR DO ATRIBUTO 
+        console.log(lista.getAttribute('data-urgencia')) //TAMBÉM FUNCIONA. MAS, COM O OPERADOR PONTO NÃO FUNCIONA
+
+        //CUIDADO COM ATRIBUTOS COM PALAVRAS RESERVADAS
+
+        const label=document.querySelector('label')
+        console.log(label.for) // RETORNA UNDEFINED
+        console.log(label.htmlFor) // RETORNA CORRETAMENTE O VALOR. OU
+        console.log(label.getAttribute('for')) // TAMBÉM FUNCIONA
+
+
+    </script>
+</body>
+
+</html>

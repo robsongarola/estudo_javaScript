@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='UTF-8'>
+    <title>Fetch API #02</title>
+    <link rel='stylesheet' href='css/estilo.css'>
+    <style>
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        form input,
+        form select,
+        form button {
+            margin: 10px;
+            font-size: 1.6em;
+        }
+    </style>
+</head>
+
+<body class="conteudo exercicio">
+    <h1>Formulário Via Fetch</h1>
+    <form name="usuarioForm" action="formulario" method="post">
+        <input type="text" name="nome" placeholder="Nome..." />
+        <input type="text" name="sobrenome" placeholder="Sobrenome..." />
+        <button>Salvar</button>
+    </form>
+    <div id="resultado"></div>
+    <script>
+        document.usuarioForm.onsubmit = async e =>{
+            e.preventDefault();
+
+            const form = e.target;
+
+            const data = new FormData(form);
+             // AGORA TENHO ACESSO AOS DADOS DO CORMULÁRIO
+
+             data.append('ajax',true) // SÓ FAZENDO UM TESTE QUE EU POSSO INCLUIR DADOS NO FORMULÁRIO
+
+            // COMO IREI ENVIAR DADOS PARA O SERVIDOR , TEMOS QUE CONFIGURAR O FETCH
+
+            const options = {
+                method : form.method, // o method que usaremos (post)
+                body: new URLSearchParams(data) // DEMOS QUE USAR ESSA FUNÇÃO PARA ENVIAR OS DADOS PARA O SRVIDOR
+                
+            }
+              const resultado = document.getElementById('resultado')
+       //     AGORA USAR A API FETCH PARA ENVAR O FORMULARIO
+
+            fetch(form.action, options)
+                .then( resp => resp.json())
+                .then( json =>{
+                    resultado.innerHTML= JSON.stringify(json)
+                })
+                .catch( e =>{
+                    resultado.innerHTML = e
+                })
+             // PODEMOS USAR AWAIT
+
+            //  try{
+            //     const resp = await fetch (form.action,options)
+            //     const json = await resp.json()
+            //     resultado.innerHTML= JSON.stringify(json)
+            //  }
+            //  catch{
+
+            //     resultado.innerHTML = e
+            //  }
+        }
+  
+    </script>
+</body>

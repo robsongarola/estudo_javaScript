@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Selecionar Elementos #01</title>
+    <link rel="stylesheet" href="css/estilo.css">
+</head>
+<body class="conteudo exercicio">
+    <div id="primeiro">#primeiro</div>
+    <div>Segundo</div>
+    <div class="terceiro ultimo">.terceiro .ultimo</div>
+    <script>              
+       // USANDO OS MÉTODOS MAIS COMUNS DE SELECIONAR UM ELEMENTO HTML
+       document.getElementById('primeiro').classList.add('destaque')
+       //VAMOS AGORA SELECIONAR MAIS DE UM ELEMENTO COM O MÉTODO DOCUMENT.GETELEMETSBYTAGNAME('TAG')
+       const divs= document.getElementsByTagName('div') // ESTAMSO SELECIONANDO MAIS DE UM ELEMENTO - RETORNA UM HTML=COLLECTIO
+        Array.from(divs).forEach( e => e.classList.remove('destaque')) //FOI REMOVIDO DE TODAS AS DIVS A CLASSE DESTAQUE
+
+        // PODEMOS TRANSFORMAR UM HTML-COLLECTION EM UM ARRAY COM O OPERADOR SPREED
+
+        const divsArray=[...divs]
+
+        divsArray.forEach( e => e.classList.add('destaque'))
+
+        // VAMOS AGORA SELECIONAR ELEMENTOS PELA CLASSE
+
+        const ultimosElementos= document.getElementsByClassName('ultimo') // RETORNA UM HTML-COLLECTION
+
+        for (let i of ultimosElementos){
+
+            i.classList.remove('destaque')
+        }
+    </script>
+</body>
+</html>
