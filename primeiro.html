@@ -9,12 +9,11 @@
         .box{
             display: grid;
             grid-template-columns: auto auto auto ;
-            column-gap: 20px;
-            row-gap: 20px;
-            width: 100%;
+            column-gap: 5px;
+            row-gap: 5px;           
             margin: auto auto;
-             
-
+            
+            
             & .conteudo{
                 padding: 10px;
                 border: 1px solid red;
@@ -23,13 +22,29 @@
                 height: 40px;
                 background-color: green;
                 align-content: center;
+
+
+
             }
+            & .conteudo1{
+                grid-column-start: 1;
+                grid-column-end: 3;
+                padding: 10px;
+                border: 1px solid red;
+                text-align: center;   
+                font-size: 30px;              
+                height: 40px;
+                background-color: green;
+                align-content: center;
+            
+                
+           }
     </style>
 </head>
 <body>
 
     <div class="box">
-        <div class="conteudo">1</div>
+        <div class="conteudo1">1</div>
         <div class="conteudo">2</div>
         <div class="conteudo">3</div>
         <div class="conteudo">4</div>
