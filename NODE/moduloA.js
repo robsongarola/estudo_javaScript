@@ -1,0 +1,8 @@
+// TRES FORMAS CLASSICAS DE EXPORTAR "ALGO" PARA FORA DO MODULO NODE
+
+this.ola="Fala pessoal";
+exports.bemVindos="bem vindos ao node";
+module.exports.ateLogo='Até o próximo exemplo';
+
+// LEMBRANDO QUE 'THIS' , EXPORTS E MODULE.EXPORTS SÃO CRIAÇÕES DE OBJETOS QUE ESTAMOS EXPORTANDO
+//PARA FORA DESSE MODULO (OBJETO SÃO : CHAVE/VALOR)
