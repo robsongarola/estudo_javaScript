@@ -2,7 +2,8 @@ const modoDev = process.env.NODE_ENV !== 'production';
 const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const css_mimizer_webpack_plugin = require('css-minimizer-webpack-plugin');
-const terser_webpack_plugin = require('terser-webpack-plugin')
+const terser_webpack_plugin = require('terser-webpack-plugin');
+
 
 
 module.exports={
@@ -39,6 +40,9 @@ module.exports={
                 'css-loader',
                 'sass-loader',
             ]
+        },{
+            test: /\.(png|svg|jpg|gif)$/,
+            use: ['file-loader']
         }]
     }
 }

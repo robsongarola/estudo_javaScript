@@ -1,4 +1,8 @@
 body{
 
     background-color: #444;
+    background-image: url(../imgs/Logo\ Lojas\ Ene\ Esse\ 02.pdf);
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 100vh;
 }
