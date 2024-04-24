@@ -3,6 +3,7 @@ const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const css_mimizer_webpack_plugin = require('css-minimizer-webpack-plugin');
 const terser_webpack_plugin = require('terser-webpack-plugin');
+ 
 
 
 
@@ -19,6 +20,12 @@ module.exports={
     output:{
         filename:'principal.js',
         path: __dirname + "/public"
+    },
+    devServer:{
+        static: {
+            directory: __dirname + '/public',
+        },
+        port: 9000
     },
     plugins:[
         new MiniCssExtractPlugin({
@@ -41,8 +48,8 @@ module.exports={
                 'sass-loader',
             ]
         },{
-            test: /\.(png|svg|jpg|gif)$/,
-            use: ['file-loader']
+            test: /\.(jpe?g|png|gif|svg)$/i,
+           // use: ['file-Loader']
         }]
     }
 }
